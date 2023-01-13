@@ -1,5 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 function Card(props) {
+  const [cartItmesOne, setCartItemsOne] = useState({
+    id: "",
+    title: "",
+    moneySign: "",
+    price: "",
+    img: "",
+  });
+
+  function addToCart(event){
+    props.onAdd(cartItmesOne);
+    event.preventDefault();
+  }
+
   return (
     <div className="container-in-card">
       <div className="img-container">
@@ -16,11 +29,11 @@ function Card(props) {
           </h5>
           <div className="btn-container ">
             <button
-              
-              onClick={props.onAdd}
+              data-itemid={props.id}
+              onClick={addToCart}
               className="product-btn-1"
             >
-              <p>Add To Cart</p>
+              Add To Cart
             </button>
             <button type="button" className="product-btn-1">
               Buy Now
@@ -28,9 +41,8 @@ function Card(props) {
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }
 
 export default Card;
-

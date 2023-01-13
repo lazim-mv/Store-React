@@ -5,52 +5,44 @@ import Cart from "./Cart";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 function Store() {
-  const [addCart, setAddCart] = useState(true);
+  const [cartItmes, setCartItems] = useState({
+            id:"",
+            title:"",
+            moneySign:"",
+            price:"",
+            img:""
+  });
   const [count, setCount] = useState(1);
-  // console.log(addCart);
-
-  function addItem(selectedImgData) {
-  //   const number = [1, 2, 34, 5];
+  console.log(cartItmes);
+  
+  function addItem(cartItems,e) {
+    setCartItems(prevState => {
+      const some = imgData.find(data => {
+        if(e.target.dataset.itemid === data.id){
+          return({
+            ...prevState,
+            [prevState.id]: data.id,
+            [prevState.id]:data.id,
+            [prevState.title]:data.productTitle,
+            [prevState.moneySign]:data.countryMoney,
+            [prevState.price]:data.price,
+            [prevState.img]:data.imgUrl
+          })
+          return some;
+        }
+      })
+    })
     
-  //     const selectedImgData = imgData.find(img => number.includes(img.id));
-  //     return([
-  //       <Cart
-  //         {...selectedImgData}
-  //         key={selectedImgData.id}
-  //         title={selectedImgData.productTitle}
-  //         moneySign={selectedImgData.countryMoney}
-  //         price={selectedImgData.price}
-  //         desc={selectedImgData.description}
-  //         img={selectedImgData.imgUrl}
-  //         count={count}
-  //         addCount={addCount}
-  //         minusCount={minusCount}
-  //       />
-  // ])
     
-  }
+}
 
-  // function contentCartElement(data) {
-  //   return (
-  //     <Cart
-  //       key={data.id}
-  //       title={data.productTitle}
-  //       moneySign={data.countryMoney}
-  //       price={data.price}
-  //       desc={data.description}
-  //       img={data.imgUrl}
-  //       count={count}
-  //       addCount={addCount}
-  //       minusCount={minusCount}
-  //     />
-  //   );
-  // }
+
 
   function contentElement(contents) {
-
     return (
       <Card
         key={contents.id}
+        id={contents.id}
         title={contents.productTitle}
         moneySign={contents.countryMoney}
         price={contents.price}
@@ -72,7 +64,8 @@ function Store() {
     <div>
       <div className="card-container">{imgData.map(contentElement)}</div>
 
-      {/* {addCart ? imgData.map(selectedImgData) : ""} */}
+      <Cart/>
+      {/* {cartItmes ? {cartItmes} : null} */}
     </div>
   );
 }

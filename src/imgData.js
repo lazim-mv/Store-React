@@ -57,9 +57,7 @@ const imgData = [
    
 ]
 
-
-
-// console.log(selectedImgData);
+// console.log(arr);
 
 export default imgData;
 
